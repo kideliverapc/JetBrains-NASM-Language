@@ -13,7 +13,7 @@ import com.nasmlanguage.psi.*;
 
 public class NASMLabelDefMacroImpl extends ASTWrapperPsiElement implements NASMLabelDefMacro {
 
-  public NASMLabelDefMacroImpl(ASTNode node) {
+  public NASMLabelDefMacroImpl(@NotNull ASTNode node) {
     super(node);
   }
 

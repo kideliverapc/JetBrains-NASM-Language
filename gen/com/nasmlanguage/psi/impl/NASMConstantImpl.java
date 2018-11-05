@@ -13,7 +13,7 @@ import com.nasmlanguage.psi.*;
 
 public class NASMConstantImpl extends ASTWrapperPsiElement implements NASMConstant {
 
-  public NASMConstantImpl(ASTNode node) {
+  public NASMConstantImpl(@NotNull ASTNode node) {
     super(node);
   }
 

@@ -12,7 +12,7 @@ import com.nasmlanguage.psi.*;
 
 public class NASMSegmentAddressImpl extends NASMExprImpl implements NASMSegmentAddress {
 
-  public NASMSegmentAddressImpl(ASTNode node) {
+  public NASMSegmentAddressImpl(@NotNull ASTNode node) {
     super(node);
   }
 

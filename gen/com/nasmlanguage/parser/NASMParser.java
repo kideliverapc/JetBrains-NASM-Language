@@ -92,6 +92,9 @@ public class NASMParser implements PsiParser, LightPsiParser {
     else if (t == STRUCTURE) {
       r = Structure(b, 0);
     }
+    else if (t == UNDEF) {
+      r = Undef(b, 0);
+    }
     else {
       r = parse_root_(t, b, 0);
     }
@@ -207,11 +210,10 @@ public class NASMParser implements PsiParser, LightPsiParser {
   // CRLF*
   private static boolean Conditional_0_2(PsiBuilder b, int l) {
     if (!recursion_guard_(b, l, "Conditional_0_2")) return false;
-    int c = current_position_(b);
     while (true) {
+      int c = current_position_(b);
       if (!consumeToken(b, CRLF)) break;
       if (!empty_element_parsed_guard_(b, "Conditional_0_2", c)) break;
-      c = current_position_(b);
     }
     return true;
   }
@@ -219,11 +221,10 @@ public class NASMParser implements PsiParser, LightPsiParser {
   // (Preprocessor|Constant|Directive|Label|Structure|Data|Instruction)*
   private static boolean Conditional_0_3(PsiBuilder b, int l) {
     if (!recursion_guard_(b, l, "Conditional_0_3")) return false;
-    int c = current_position_(b);
     while (true) {
+      int c = current_position_(b);
       if (!Conditional_0_3_0(b, l + 1)) break;
       if (!empty_element_parsed_guard_(b, "Conditional_0_3", c)) break;
-      c = current_position_(b);
     }
     return true;
   }
@@ -232,7 +233,6 @@ public class NASMParser implements PsiParser, LightPsiParser {
   private static boolean Conditional_0_3_0(PsiBuilder b, int l) {
     if (!recursion_guard_(b, l, "Conditional_0_3_0")) return false;
     boolean r;
-    Marker m = enter_section_(b);
     r = Preprocessor(b, l + 1);
     if (!r) r = Constant(b, l + 1);
     if (!r) r = Directive(b, l + 1);
@@ -240,18 +240,16 @@ public class NASMParser implements PsiParser, LightPsiParser {
     if (!r) r = Structure(b, l + 1);
     if (!r) r = Data(b, l + 1);
     if (!r) r = Instruction(b, l + 1);
-    exit_section_(b, m, null, r);
     return r;
   }
 
   // ((ELIF_TAG Condition|ELSE_TAG) CRLF* (Preprocessor|Constant|Directive|Label|Structure|Data|Instruction)*)*
   private static boolean Conditional_0_4(PsiBuilder b, int l) {
     if (!recursion_guard_(b, l, "Conditional_0_4")) return false;
-    int c = current_position_(b);
     while (true) {
+      int c = current_position_(b);
       if (!Conditional_0_4_0(b, l + 1)) break;
       if (!empty_element_parsed_guard_(b, "Conditional_0_4", c)) break;
-      c = current_position_(b);
     }
     return true;
   }
@@ -293,11 +291,10 @@ public class NASMParser implements PsiParser, LightPsiParser {
   // CRLF*
   private static boolean Conditional_0_4_0_1(PsiBuilder b, int l) {
     if (!recursion_guard_(b, l, "Conditional_0_4_0_1")) return false;
-    int c = current_position_(b);
     while (true) {
+      int c = current_position_(b);
       if (!consumeToken(b, CRLF)) break;
       if (!empty_element_parsed_guard_(b, "Conditional_0_4_0_1", c)) break;
-      c = current_position_(b);
     }
     return true;
   }
@@ -305,11 +302,10 @@ public class NASMParser implements PsiParser, LightPsiParser {
   // (Preprocessor|Constant|Directive|Label|Structure|Data|Instruction)*
   private static boolean Conditional_0_4_0_2(PsiBuilder b, int l) {
     if (!recursion_guard_(b, l, "Conditional_0_4_0_2")) return false;
-    int c = current_position_(b);
     while (true) {
+      int c = current_position_(b);
       if (!Conditional_0_4_0_2_0(b, l + 1)) break;
       if (!empty_element_parsed_guard_(b, "Conditional_0_4_0_2", c)) break;
-      c = current_position_(b);
     }
     return true;
   }
@@ -318,7 +314,6 @@ public class NASMParser implements PsiParser, LightPsiParser {
   private static boolean Conditional_0_4_0_2_0(PsiBuilder b, int l) {
     if (!recursion_guard_(b, l, "Conditional_0_4_0_2_0")) return false;
     boolean r;
-    Marker m = enter_section_(b);
     r = Preprocessor(b, l + 1);
     if (!r) r = Constant(b, l + 1);
     if (!r) r = Directive(b, l + 1);
@@ -326,18 +321,16 @@ public class NASMParser implements PsiParser, LightPsiParser {
     if (!r) r = Structure(b, l + 1);
     if (!r) r = Data(b, l + 1);
     if (!r) r = Instruction(b, l + 1);
-    exit_section_(b, m, null, r);
     return r;
   }
 
   // CRLF*
   private static boolean Conditional_0_6(PsiBuilder b, int l) {
     if (!recursion_guard_(b, l, "Conditional_0_6")) return false;
-    int c = current_position_(b);
     while (true) {
+      int c = current_position_(b);
       if (!consumeToken(b, CRLF)) break;
       if (!empty_element_parsed_guard_(b, "Conditional_0_6", c)) break;
-      c = current_position_(b);
     }
     return true;
   }
@@ -368,11 +361,10 @@ public class NASMParser implements PsiParser, LightPsiParser {
   // CRLF*
   private static boolean Conditional_1_4(PsiBuilder b, int l) {
     if (!recursion_guard_(b, l, "Conditional_1_4")) return false;
-    int c = current_position_(b);
     while (true) {
+      int c = current_position_(b);
       if (!consumeToken(b, CRLF)) break;
       if (!empty_element_parsed_guard_(b, "Conditional_1_4", c)) break;
-      c = current_position_(b);
     }
     return true;
   }
@@ -380,11 +372,10 @@ public class NASMParser implements PsiParser, LightPsiParser {
   // (Preprocessor|Directive|Data|Instruction)*
   private static boolean Conditional_1_5(PsiBuilder b, int l) {
     if (!recursion_guard_(b, l, "Conditional_1_5")) return false;
-    int c = current_position_(b);
     while (true) {
+      int c = current_position_(b);
       if (!Conditional_1_5_0(b, l + 1)) break;
       if (!empty_element_parsed_guard_(b, "Conditional_1_5", c)) break;
-      c = current_position_(b);
     }
     return true;
   }
@@ -393,12 +384,10 @@ public class NASMParser implements PsiParser, LightPsiParser {
   private static boolean Conditional_1_5_0(PsiBuilder b, int l) {
     if (!recursion_guard_(b, l, "Conditional_1_5_0")) return false;
     boolean r;
-    Marker m = enter_section_(b);
     r = Preprocessor(b, l + 1);
     if (!r) r = Directive(b, l + 1);
     if (!r) r = Data(b, l + 1);
     if (!r) r = Instruction(b, l + 1);
-    exit_section_(b, m, null, r);
     return r;
   }
 
@@ -406,7 +395,7 @@ public class NASMParser implements PsiParser, LightPsiParser {
   // Identifier EQU ((MINUS|PLUS)? NumericExpr) CRLF*
   public static boolean Constant(PsiBuilder b, int l) {
     if (!recursion_guard_(b, l, "Constant")) return false;
-    if (!nextTokenIs(b, ID)) return false;
+    if (!nextTokenIsSmart(b, ID)) return false;
     boolean r;
     Marker m = enter_section_(b);
     r = Identifier(b, l + 1);
@@ -439,21 +428,18 @@ public class NASMParser implements PsiParser, LightPsiParser {
   private static boolean Constant_2_0_0(PsiBuilder b, int l) {
     if (!recursion_guard_(b, l, "Constant_2_0_0")) return false;
     boolean r;
-    Marker m = enter_section_(b);
     r = consumeToken(b, MINUS);
     if (!r) r = consumeToken(b, PLUS);
-    exit_section_(b, m, null, r);
     return r;
   }
 
   // CRLF*
   private static boolean Constant_3(PsiBuilder b, int l) {
     if (!recursion_guard_(b, l, "Constant_3")) return false;
-    int c = current_position_(b);
     while (true) {
+      int c = current_position_(b);
       if (!consumeToken(b, CRLF)) break;
       if (!empty_element_parsed_guard_(b, "Constant_3", c)) break;
-      c = current_position_(b);
     }
     return true;
   }
@@ -462,7 +448,8 @@ public class NASMParser implements PsiParser, LightPsiParser {
   // Identifier? DATA_OP DataValue
   public static boolean Data(PsiBuilder b, int l) {
     if (!recursion_guard_(b, l, "Data")) return false;
-    if (!nextTokenIs(b, "<data>", DATA_OP, ID)) return false;
+    if (!nextTokenIsSmart(b, ID) &&
+        !nextTokenIs(b, "<data>", DATA_OP)) return false;
     boolean r;
     Marker m = enter_section_(b, l, _NONE_, DATA, "<data>");
     r = Data_0(b, l + 1);
@@ -504,10 +491,8 @@ public class NASMParser implements PsiParser, LightPsiParser {
   private static boolean DataValue_0_0(PsiBuilder b, int l) {
     if (!recursion_guard_(b, l, "DataValue_0_0")) return false;
     boolean r;
-    Marker m = enter_section_(b);
     r = consumeToken(b, MINUS);
     if (!r) r = consumeToken(b, PLUS);
-    exit_section_(b, m, null, r);
     return r;
   }
 
@@ -515,22 +500,19 @@ public class NASMParser implements PsiParser, LightPsiParser {
   private static boolean DataValue_1(PsiBuilder b, int l) {
     if (!recursion_guard_(b, l, "DataValue_1")) return false;
     boolean r;
-    Marker m = enter_section_(b);
     r = NumericExpr(b, l + 1);
     if (!r) r = consumeToken(b, STRING);
     if (!r) r = LabelIdentifier(b, l + 1);
-    exit_section_(b, m, null, r);
     return r;
   }
 
   // (SEPARATOR ((MINUS|PLUS)? (NumericExpr|STRING|LabelIdentifier)))*
   private static boolean DataValue_2(PsiBuilder b, int l) {
     if (!recursion_guard_(b, l, "DataValue_2")) return false;
-    int c = current_position_(b);
     while (true) {
+      int c = current_position_(b);
       if (!DataValue_2_0(b, l + 1)) break;
       if (!empty_element_parsed_guard_(b, "DataValue_2", c)) break;
-      c = current_position_(b);
     }
     return true;
   }
@@ -568,10 +550,8 @@ public class NASMParser implements PsiParser, LightPsiParser {
   private static boolean DataValue_2_0_1_0_0(PsiBuilder b, int l) {
     if (!recursion_guard_(b, l, "DataValue_2_0_1_0_0")) return false;
     boolean r;
-    Marker m = enter_section_(b);
     r = consumeToken(b, MINUS);
     if (!r) r = consumeToken(b, PLUS);
-    exit_section_(b, m, null, r);
     return r;
   }
 
@@ -579,11 +559,9 @@ public class NASMParser implements PsiParser, LightPsiParser {
   private static boolean DataValue_2_0_1_1(PsiBuilder b, int l) {
     if (!recursion_guard_(b, l, "DataValue_2_0_1_1")) return false;
     boolean r;
-    Marker m = enter_section_(b);
     r = NumericExpr(b, l + 1);
     if (!r) r = consumeToken(b, STRING);
     if (!r) r = LabelIdentifier(b, l + 1);
-    exit_section_(b, m, null, r);
     return r;
   }
 
@@ -645,11 +623,10 @@ public class NASMParser implements PsiParser, LightPsiParser {
   // (SEPARATOR Identifier)*
   private static boolean Define_0_3_0_1(PsiBuilder b, int l) {
     if (!recursion_guard_(b, l, "Define_0_3_0_1")) return false;
-    int c = current_position_(b);
     while (true) {
+      int c = current_position_(b);
       if (!Define_0_3_0_1_0(b, l + 1)) break;
       if (!empty_element_parsed_guard_(b, "Define_0_3_0_1", c)) break;
-      c = current_position_(b);
     }
     return true;
   }
@@ -668,11 +645,10 @@ public class NASMParser implements PsiParser, LightPsiParser {
   // CRLF*
   private static boolean Define_0_6(PsiBuilder b, int l) {
     if (!recursion_guard_(b, l, "Define_0_6")) return false;
-    int c = current_position_(b);
     while (true) {
+      int c = current_position_(b);
       if (!consumeToken(b, CRLF)) break;
       if (!empty_element_parsed_guard_(b, "Define_0_6", c)) break;
-      c = current_position_(b);
     }
     return true;
   }
@@ -716,11 +692,10 @@ public class NASMParser implements PsiParser, LightPsiParser {
   // CRLF*
   private static boolean Define_1_3(PsiBuilder b, int l) {
     if (!recursion_guard_(b, l, "Define_1_3")) return false;
-    int c = current_position_(b);
     while (true) {
+      int c = current_position_(b);
       if (!consumeToken(b, CRLF)) break;
       if (!empty_element_parsed_guard_(b, "Define_1_3", c)) break;
-      c = current_position_(b);
     }
     return true;
   }
@@ -742,22 +717,19 @@ public class NASMParser implements PsiParser, LightPsiParser {
   private static boolean Directive_0(PsiBuilder b, int l) {
     if (!recursion_guard_(b, l, "Directive_0")) return false;
     boolean r;
-    Marker m = enter_section_(b);
     r = DirectiveDecl(b, l + 1);
     if (!r) r = DirectiveDeclBrackets(b, l + 1);
     if (!r) r = MapOption(b, l + 1);
-    exit_section_(b, m, null, r);
     return r;
   }
 
   // CRLF*
   private static boolean Directive_1(PsiBuilder b, int l) {
     if (!recursion_guard_(b, l, "Directive_1")) return false;
-    int c = current_position_(b);
     while (true) {
+      int c = current_position_(b);
       if (!consumeToken(b, CRLF)) break;
       if (!empty_element_parsed_guard_(b, "Directive_1", c)) break;
-      c = current_position_(b);
     }
     return true;
   }
@@ -785,10 +757,8 @@ public class NASMParser implements PsiParser, LightPsiParser {
   private static boolean DirectiveArg_0_0(PsiBuilder b, int l) {
     if (!recursion_guard_(b, l, "DirectiveArg_0_0")) return false;
     boolean r;
-    Marker m = enter_section_(b);
     r = consumeToken(b, MINUS);
     if (!r) r = consumeToken(b, PLUS);
-    exit_section_(b, m, null, r);
     return r;
   }
 
@@ -796,13 +766,11 @@ public class NASMParser implements PsiParser, LightPsiParser {
   private static boolean DirectiveArg_1(PsiBuilder b, int l) {
     if (!recursion_guard_(b, l, "DirectiveArg_1")) return false;
     boolean r;
-    Marker m = enter_section_(b);
     r = MacroCall(b, l + 1);
     if (!r) r = NumericLiteral(b, l + 1);
     if (!r) r = Address(b, l + 1);
     if (!r) r = SegmentAddress(b, l + 1);
     if (!r) r = Identifier(b, l + 1);
-    exit_section_(b, m, null, r);
     return r;
   }
 
@@ -822,11 +790,10 @@ public class NASMParser implements PsiParser, LightPsiParser {
   // DirectiveArg*
   private static boolean DirectiveDecl_1(PsiBuilder b, int l) {
     if (!recursion_guard_(b, l, "DirectiveDecl_1")) return false;
-    int c = current_position_(b);
     while (true) {
+      int c = current_position_(b);
       if (!DirectiveArg(b, l + 1)) break;
       if (!empty_element_parsed_guard_(b, "DirectiveDecl_1", c)) break;
-      c = current_position_(b);
     }
     return true;
   }
@@ -897,11 +864,10 @@ public class NASMParser implements PsiParser, LightPsiParser {
   // CRLF*
   private static boolean Error_1(PsiBuilder b, int l) {
     if (!recursion_guard_(b, l, "Error_1")) return false;
-    int c = current_position_(b);
     while (true) {
+      int c = current_position_(b);
       if (!consumeToken(b, CRLF)) break;
       if (!empty_element_parsed_guard_(b, "Error_1", c)) break;
-      c = current_position_(b);
     }
     return true;
   }
@@ -925,11 +891,10 @@ public class NASMParser implements PsiParser, LightPsiParser {
   // CRLF*
   private static boolean IStruc_2(PsiBuilder b, int l) {
     if (!recursion_guard_(b, l, "IStruc_2")) return false;
-    int c = current_position_(b);
     while (true) {
+      int c = current_position_(b);
       if (!consumeToken(b, CRLF)) break;
       if (!empty_element_parsed_guard_(b, "IStruc_2", c)) break;
-      c = current_position_(b);
     }
     return true;
   }
@@ -937,11 +902,10 @@ public class NASMParser implements PsiParser, LightPsiParser {
   // (AT_TAG (StructureField|LabelIdentifier|Identifier) SEPARATOR DATA_OP DataValue CRLF*)*
   private static boolean IStruc_3(PsiBuilder b, int l) {
     if (!recursion_guard_(b, l, "IStruc_3")) return false;
-    int c = current_position_(b);
     while (true) {
+      int c = current_position_(b);
       if (!IStruc_3_0(b, l + 1)) break;
       if (!empty_element_parsed_guard_(b, "IStruc_3", c)) break;
-      c = current_position_(b);
     }
     return true;
   }
@@ -964,22 +928,19 @@ public class NASMParser implements PsiParser, LightPsiParser {
   private static boolean IStruc_3_0_1(PsiBuilder b, int l) {
     if (!recursion_guard_(b, l, "IStruc_3_0_1")) return false;
     boolean r;
-    Marker m = enter_section_(b);
     r = StructureField(b, l + 1);
     if (!r) r = LabelIdentifier(b, l + 1);
     if (!r) r = Identifier(b, l + 1);
-    exit_section_(b, m, null, r);
     return r;
   }
 
   // CRLF*
   private static boolean IStruc_3_0_5(PsiBuilder b, int l) {
     if (!recursion_guard_(b, l, "IStruc_3_0_5")) return false;
-    int c = current_position_(b);
     while (true) {
+      int c = current_position_(b);
       if (!consumeToken(b, CRLF)) break;
       if (!empty_element_parsed_guard_(b, "IStruc_3_0_5", c)) break;
-      c = current_position_(b);
     }
     return true;
   }
@@ -1071,11 +1032,10 @@ public class NASMParser implements PsiParser, LightPsiParser {
   // (((BITWISE_NOT|MINUS|PLUS)? Expr) SEPARATOR)*
   private static boolean Instruction_0_0_2_0_0_0(PsiBuilder b, int l) {
     if (!recursion_guard_(b, l, "Instruction_0_0_2_0_0_0")) return false;
-    int c = current_position_(b);
     while (true) {
+      int c = current_position_(b);
       if (!Instruction_0_0_2_0_0_0_0(b, l + 1)) break;
       if (!empty_element_parsed_guard_(b, "Instruction_0_0_2_0_0_0", c)) break;
-      c = current_position_(b);
     }
     return true;
   }
@@ -1113,11 +1073,9 @@ public class NASMParser implements PsiParser, LightPsiParser {
   private static boolean Instruction_0_0_2_0_0_0_0_0_0_0(PsiBuilder b, int l) {
     if (!recursion_guard_(b, l, "Instruction_0_0_2_0_0_0_0_0_0_0")) return false;
     boolean r;
-    Marker m = enter_section_(b);
     r = consumeToken(b, BITWISE_NOT);
     if (!r) r = consumeToken(b, MINUS);
     if (!r) r = consumeToken(b, PLUS);
-    exit_section_(b, m, null, r);
     return r;
   }
 
@@ -1143,11 +1101,9 @@ public class NASMParser implements PsiParser, LightPsiParser {
   private static boolean Instruction_0_0_2_0_0_1_0_0(PsiBuilder b, int l) {
     if (!recursion_guard_(b, l, "Instruction_0_0_2_0_0_1_0_0")) return false;
     boolean r;
-    Marker m = enter_section_(b);
     r = consumeToken(b, BITWISE_NOT);
     if (!r) r = consumeToken(b, MINUS);
     if (!r) r = consumeToken(b, PLUS);
-    exit_section_(b, m, null, r);
     return r;
   }
 
@@ -1176,22 +1132,19 @@ public class NASMParser implements PsiParser, LightPsiParser {
   private static boolean Instruction_0_0_2_0_1_1_0(PsiBuilder b, int l) {
     if (!recursion_guard_(b, l, "Instruction_0_0_2_0_1_1_0")) return false;
     boolean r;
-    Marker m = enter_section_(b);
     r = consumeToken(b, BITWISE_NOT);
     if (!r) r = consumeToken(b, MINUS);
     if (!r) r = consumeToken(b, PLUS);
-    exit_section_(b, m, null, r);
     return r;
   }
 
   // CRLF*
   private static boolean Instruction_1(PsiBuilder b, int l) {
     if (!recursion_guard_(b, l, "Instruction_1")) return false;
-    int c = current_position_(b);
     while (true) {
+      int c = current_position_(b);
       if (!consumeToken(b, CRLF)) break;
       if (!empty_element_parsed_guard_(b, "Instruction_1", c)) break;
-      c = current_position_(b);
     }
     return true;
   }
@@ -1241,11 +1194,9 @@ public class NASMParser implements PsiParser, LightPsiParser {
   private static boolean Label_0_0_1_0(PsiBuilder b, int l) {
     if (!recursion_guard_(b, l, "Label_0_0_1_0")) return false;
     boolean r;
-    Marker m = enter_section_(b);
     r = Instruction(b, l + 1);
     if (!r) r = Data(b, l + 1);
     if (!r) r = Structure(b, l + 1);
-    exit_section_(b, m, null, r);
     return r;
   }
 
@@ -1271,22 +1222,19 @@ public class NASMParser implements PsiParser, LightPsiParser {
   private static boolean Label_0_1_1_0(PsiBuilder b, int l) {
     if (!recursion_guard_(b, l, "Label_0_1_1_0")) return false;
     boolean r;
-    Marker m = enter_section_(b);
     r = Instruction(b, l + 1);
     if (!r) r = Data(b, l + 1);
     if (!r) r = Structure(b, l + 1);
-    exit_section_(b, m, null, r);
     return r;
   }
 
   // CRLF*
   private static boolean Label_1(PsiBuilder b, int l) {
     if (!recursion_guard_(b, l, "Label_1")) return false;
-    int c = current_position_(b);
     while (true) {
+      int c = current_position_(b);
       if (!consumeToken(b, CRLF)) break;
       if (!empty_element_parsed_guard_(b, "Label_1", c)) break;
-      c = current_position_(b);
     }
     return true;
   }
@@ -1295,7 +1243,7 @@ public class NASMParser implements PsiParser, LightPsiParser {
   // MacroCall COLON CRLF*
   public static boolean LabelDefMacro(PsiBuilder b, int l) {
     if (!recursion_guard_(b, l, "LabelDefMacro")) return false;
-    if (!nextTokenIs(b, "<label def macro>", ID, SIZE_TYPE)) return false;
+    if (!nextTokenIsSmart(b, ID, SIZE_TYPE)) return false;
     boolean r;
     Marker m = enter_section_(b, l, _NONE_, LABEL_DEF_MACRO, "<label def macro>");
     r = MacroCall(b, l + 1);
@@ -1308,11 +1256,10 @@ public class NASMParser implements PsiParser, LightPsiParser {
   // CRLF*
   private static boolean LabelDefMacro_2(PsiBuilder b, int l) {
     if (!recursion_guard_(b, l, "LabelDefMacro_2")) return false;
-    int c = current_position_(b);
     while (true) {
+      int c = current_position_(b);
       if (!consumeToken(b, CRLF)) break;
       if (!empty_element_parsed_guard_(b, "LabelDefMacro_2", c)) break;
-      c = current_position_(b);
     }
     return true;
   }
@@ -1356,11 +1303,10 @@ public class NASMParser implements PsiParser, LightPsiParser {
   // CRLF*
   private static boolean Macro_1_3(PsiBuilder b, int l) {
     if (!recursion_guard_(b, l, "Macro_1_3")) return false;
-    int c = current_position_(b);
     while (true) {
+      int c = current_position_(b);
       if (!consumeToken(b, CRLF)) break;
       if (!empty_element_parsed_guard_(b, "Macro_1_3", c)) break;
-      c = current_position_(b);
     }
     return true;
   }
@@ -1368,11 +1314,10 @@ public class NASMParser implements PsiParser, LightPsiParser {
   // (MacroLabel|Data|Instruction|Preprocessor|ID CRLF*)*
   private static boolean Macro_1_4(PsiBuilder b, int l) {
     if (!recursion_guard_(b, l, "Macro_1_4")) return false;
-    int c = current_position_(b);
     while (true) {
+      int c = current_position_(b);
       if (!Macro_1_4_0(b, l + 1)) break;
       if (!empty_element_parsed_guard_(b, "Macro_1_4", c)) break;
-      c = current_position_(b);
     }
     return true;
   }
@@ -1405,11 +1350,10 @@ public class NASMParser implements PsiParser, LightPsiParser {
   // CRLF*
   private static boolean Macro_1_4_0_4_1(PsiBuilder b, int l) {
     if (!recursion_guard_(b, l, "Macro_1_4_0_4_1")) return false;
-    int c = current_position_(b);
     while (true) {
+      int c = current_position_(b);
       if (!consumeToken(b, CRLF)) break;
       if (!empty_element_parsed_guard_(b, "Macro_1_4_0_4_1", c)) break;
-      c = current_position_(b);
     }
     return true;
   }
@@ -1419,13 +1363,11 @@ public class NASMParser implements PsiParser, LightPsiParser {
   static boolean MacroDefaultParam(PsiBuilder b, int l) {
     if (!recursion_guard_(b, l, "MacroDefaultParam")) return false;
     boolean r;
-    Marker m = enter_section_(b);
     r = Instruction(b, l + 1);
     if (!r) r = consumeToken(b, STRING);
     if (!r) r = consumeToken(b, REGISTER);
     if (!r) r = NumericLiteral(b, l + 1);
     if (!r) r = MacroCall(b, l + 1);
-    exit_section_(b, m, null, r);
     return r;
   }
 
@@ -1454,21 +1396,18 @@ public class NASMParser implements PsiParser, LightPsiParser {
   private static boolean MacroLabel_1_0(PsiBuilder b, int l) {
     if (!recursion_guard_(b, l, "MacroLabel_1_0")) return false;
     boolean r;
-    Marker m = enter_section_(b);
     r = Instruction(b, l + 1);
     if (!r) r = Data(b, l + 1);
-    exit_section_(b, m, null, r);
     return r;
   }
 
   // CRLF*
   private static boolean MacroLabel_2(PsiBuilder b, int l) {
     if (!recursion_guard_(b, l, "MacroLabel_2")) return false;
-    int c = current_position_(b);
     while (true) {
+      int c = current_position_(b);
       if (!consumeToken(b, CRLF)) break;
       if (!empty_element_parsed_guard_(b, "MacroLabel_2", c)) break;
-      c = current_position_(b);
     }
     return true;
   }
@@ -1572,11 +1511,10 @@ public class NASMParser implements PsiParser, LightPsiParser {
   // (SEPARATOR NumericExpr)*
   private static boolean MacroParenthesis_1_0_1(PsiBuilder b, int l) {
     if (!recursion_guard_(b, l, "MacroParenthesis_1_0_1")) return false;
-    int c = current_position_(b);
     while (true) {
+      int c = current_position_(b);
       if (!MacroParenthesis_1_0_1_0(b, l + 1)) break;
       if (!empty_element_parsed_guard_(b, "MacroParenthesis_1_0_1", c)) break;
-      c = current_position_(b);
     }
     return true;
   }
@@ -1634,7 +1572,6 @@ public class NASMParser implements PsiParser, LightPsiParser {
   static boolean Mnemonic(PsiBuilder b, int l) {
     if (!recursion_guard_(b, l, "Mnemonic")) return false;
     boolean r;
-    Marker m = enter_section_(b);
     r = consumeToken(b, GENERAL_OP);
     if (!r) r = consumeToken(b, SYSTEM_OP);
     if (!r) r = consumeToken(b, VIRTUALIZATION_OP);
@@ -1648,7 +1585,6 @@ public class NASMParser implements PsiParser, LightPsiParser {
     if (!r) r = consumeToken(b, AVX_OP);
     if (!r) r = consumeToken(b, AVX2_OP);
     if (!r) r = consumeToken(b, AVX512_OP);
-    exit_section_(b, m, null, r);
     return r;
   }
 
@@ -1656,11 +1592,10 @@ public class NASMParser implements PsiParser, LightPsiParser {
   // Element*
   static boolean NASMFile(PsiBuilder b, int l) {
     if (!recursion_guard_(b, l, "NASMFile")) return false;
-    int c = current_position_(b);
     while (true) {
+      int c = current_position_(b);
       if (!Element(b, l + 1)) break;
       if (!empty_element_parsed_guard_(b, "NASMFile", c)) break;
-      c = current_position_(b);
     }
     return true;
   }
@@ -1734,26 +1669,27 @@ public class NASMParser implements PsiParser, LightPsiParser {
   }
 
   /* ********************************************************** */
-  // Include | Define | Assign | Macro | Strlen | Error | Conditional | (PREPROCESSOR_OP Identifier Expr)
+  // Include | Define | Undef | Assign | Macro | Strlen | Error | Conditional | (PREPROCESSOR_OP Identifier Expr)
   public static boolean Preprocessor(PsiBuilder b, int l) {
     if (!recursion_guard_(b, l, "Preprocessor")) return false;
     boolean r;
     Marker m = enter_section_(b, l, _NONE_, PREPROCESSOR, "<preprocessor>");
     r = Include(b, l + 1);
     if (!r) r = Define(b, l + 1);
+    if (!r) r = Undef(b, l + 1);
     if (!r) r = Assign(b, l + 1);
     if (!r) r = Macro(b, l + 1);
     if (!r) r = Strlen(b, l + 1);
     if (!r) r = Error(b, l + 1);
     if (!r) r = Conditional(b, l + 1);
-    if (!r) r = Preprocessor_7(b, l + 1);
+    if (!r) r = Preprocessor_8(b, l + 1);
     exit_section_(b, l, m, r, false, null);
     return r;
   }
 
   // PREPROCESSOR_OP Identifier Expr
-  private static boolean Preprocessor_7(PsiBuilder b, int l) {
-    if (!recursion_guard_(b, l, "Preprocessor_7")) return false;
+  private static boolean Preprocessor_8(PsiBuilder b, int l) {
+    if (!recursion_guard_(b, l, "Preprocessor_8")) return false;
     boolean r;
     Marker m = enter_section_(b);
     r = consumeToken(b, PREPROCESSOR_OP);
@@ -1800,11 +1736,10 @@ public class NASMParser implements PsiParser, LightPsiParser {
   // CRLF*
   private static boolean Section_1(PsiBuilder b, int l) {
     if (!recursion_guard_(b, l, "Section_1")) return false;
-    int c = current_position_(b);
     while (true) {
+      int c = current_position_(b);
       if (!consumeToken(b, CRLF)) break;
       if (!empty_element_parsed_guard_(b, "Section_1", c)) break;
-      c = current_position_(b);
     }
     return true;
   }
@@ -1846,11 +1781,10 @@ public class NASMParser implements PsiParser, LightPsiParser {
   // CRLF*
   private static boolean Segment_1(PsiBuilder b, int l) {
     if (!recursion_guard_(b, l, "Segment_1")) return false;
-    int c = current_position_(b);
     while (true) {
+      int c = current_position_(b);
       if (!consumeToken(b, CRLF)) break;
       if (!empty_element_parsed_guard_(b, "Segment_1", c)) break;
-      c = current_position_(b);
     }
     return true;
   }
@@ -1874,21 +1808,18 @@ public class NASMParser implements PsiParser, LightPsiParser {
   private static boolean Strlen_2(PsiBuilder b, int l) {
     if (!recursion_guard_(b, l, "Strlen_2")) return false;
     boolean r;
-    Marker m = enter_section_(b);
     r = consumeToken(b, STRING);
     if (!r) r = Identifier(b, l + 1);
-    exit_section_(b, m, null, r);
     return r;
   }
 
   // CRLF*
   private static boolean Strlen_3(PsiBuilder b, int l) {
     if (!recursion_guard_(b, l, "Strlen_3")) return false;
-    int c = current_position_(b);
     while (true) {
+      int c = current_position_(b);
       if (!consumeToken(b, CRLF)) break;
       if (!empty_element_parsed_guard_(b, "Strlen_3", c)) break;
-      c = current_position_(b);
     }
     return true;
   }
@@ -1912,11 +1843,10 @@ public class NASMParser implements PsiParser, LightPsiParser {
   // CRLF*
   private static boolean Struc_2(PsiBuilder b, int l) {
     if (!recursion_guard_(b, l, "Struc_2")) return false;
-    int c = current_position_(b);
     while (true) {
+      int c = current_position_(b);
       if (!consumeToken(b, CRLF)) break;
       if (!empty_element_parsed_guard_(b, "Struc_2", c)) break;
-      c = current_position_(b);
     }
     return true;
   }
@@ -1924,11 +1854,10 @@ public class NASMParser implements PsiParser, LightPsiParser {
   // (((LBL_DEF|LabelIdentifier) DATA_OP ((MINUS|PLUS)? (NumericExpr|Identifier)) CRLF*)|((LabelIdentifier|LBL_DEF) CRLF*))*
   private static boolean Struc_3(PsiBuilder b, int l) {
     if (!recursion_guard_(b, l, "Struc_3")) return false;
-    int c = current_position_(b);
     while (true) {
+      int c = current_position_(b);
       if (!Struc_3_0(b, l + 1)) break;
       if (!empty_element_parsed_guard_(b, "Struc_3", c)) break;
-      c = current_position_(b);
     }
     return true;
   }
@@ -1961,10 +1890,8 @@ public class NASMParser implements PsiParser, LightPsiParser {
   private static boolean Struc_3_0_0_0(PsiBuilder b, int l) {
     if (!recursion_guard_(b, l, "Struc_3_0_0_0")) return false;
     boolean r;
-    Marker m = enter_section_(b);
     r = consumeToken(b, LBL_DEF);
     if (!r) r = LabelIdentifier(b, l + 1);
-    exit_section_(b, m, null, r);
     return r;
   }
 
@@ -1990,10 +1917,8 @@ public class NASMParser implements PsiParser, LightPsiParser {
   private static boolean Struc_3_0_0_2_0_0(PsiBuilder b, int l) {
     if (!recursion_guard_(b, l, "Struc_3_0_0_2_0_0")) return false;
     boolean r;
-    Marker m = enter_section_(b);
     r = consumeToken(b, MINUS);
     if (!r) r = consumeToken(b, PLUS);
-    exit_section_(b, m, null, r);
     return r;
   }
 
@@ -2001,21 +1926,18 @@ public class NASMParser implements PsiParser, LightPsiParser {
   private static boolean Struc_3_0_0_2_1(PsiBuilder b, int l) {
     if (!recursion_guard_(b, l, "Struc_3_0_0_2_1")) return false;
     boolean r;
-    Marker m = enter_section_(b);
     r = NumericExpr(b, l + 1);
     if (!r) r = Identifier(b, l + 1);
-    exit_section_(b, m, null, r);
     return r;
   }
 
   // CRLF*
   private static boolean Struc_3_0_0_3(PsiBuilder b, int l) {
     if (!recursion_guard_(b, l, "Struc_3_0_0_3")) return false;
-    int c = current_position_(b);
     while (true) {
+      int c = current_position_(b);
       if (!consumeToken(b, CRLF)) break;
       if (!empty_element_parsed_guard_(b, "Struc_3_0_0_3", c)) break;
-      c = current_position_(b);
     }
     return true;
   }
@@ -2035,21 +1957,18 @@ public class NASMParser implements PsiParser, LightPsiParser {
   private static boolean Struc_3_0_1_0(PsiBuilder b, int l) {
     if (!recursion_guard_(b, l, "Struc_3_0_1_0")) return false;
     boolean r;
-    Marker m = enter_section_(b);
     r = LabelIdentifier(b, l + 1);
     if (!r) r = consumeToken(b, LBL_DEF);
-    exit_section_(b, m, null, r);
     return r;
   }
 
   // CRLF*
   private static boolean Struc_3_0_1_1(PsiBuilder b, int l) {
     if (!recursion_guard_(b, l, "Struc_3_0_1_1")) return false;
-    int c = current_position_(b);
     while (true) {
+      int c = current_position_(b);
       if (!consumeToken(b, CRLF)) break;
       if (!empty_element_parsed_guard_(b, "Struc_3_0_1_1", c)) break;
-      c = current_position_(b);
     }
     return true;
   }
@@ -2071,21 +1990,53 @@ public class NASMParser implements PsiParser, LightPsiParser {
   private static boolean Structure_0(PsiBuilder b, int l) {
     if (!recursion_guard_(b, l, "Structure_0")) return false;
     boolean r;
-    Marker m = enter_section_(b);
     r = Struc(b, l + 1);
     if (!r) r = IStruc(b, l + 1);
-    exit_section_(b, m, null, r);
     return r;
   }
 
   // CRLF*
   private static boolean Structure_1(PsiBuilder b, int l) {
     if (!recursion_guard_(b, l, "Structure_1")) return false;
-    int c = current_position_(b);
     while (true) {
+      int c = current_position_(b);
       if (!consumeToken(b, CRLF)) break;
       if (!empty_element_parsed_guard_(b, "Structure_1", c)) break;
-      c = current_position_(b);
+    }
+    return true;
+  }
+
+  /* ********************************************************** */
+  // (UNDEF_TAG Identifier) CRLF*
+  public static boolean Undef(PsiBuilder b, int l) {
+    if (!recursion_guard_(b, l, "Undef")) return false;
+    if (!nextTokenIs(b, UNDEF_TAG)) return false;
+    boolean r;
+    Marker m = enter_section_(b);
+    r = Undef_0(b, l + 1);
+    r = r && Undef_1(b, l + 1);
+    exit_section_(b, m, UNDEF, r);
+    return r;
+  }
+
+  // UNDEF_TAG Identifier
+  private static boolean Undef_0(PsiBuilder b, int l) {
+    if (!recursion_guard_(b, l, "Undef_0")) return false;
+    boolean r;
+    Marker m = enter_section_(b);
+    r = consumeToken(b, UNDEF_TAG);
+    r = r && Identifier(b, l + 1);
+    exit_section_(b, m, null, r);
+    return r;
+  }
+
+  // CRLF*
+  private static boolean Undef_1(PsiBuilder b, int l) {
+    if (!recursion_guard_(b, l, "Undef_1")) return false;
+    while (true) {
+      int c = current_position_(b);
+      if (!consumeToken(b, CRLF)) break;
+      if (!empty_element_parsed_guard_(b, "Undef_1", c)) break;
     }
     return true;
   }
@@ -2263,11 +2214,9 @@ public class NASMParser implements PsiParser, LightPsiParser {
   private static boolean NumericLiteral_0_0_1_0(PsiBuilder b, int l) {
     if (!recursion_guard_(b, l, "NumericLiteral_0_0_1_0")) return false;
     boolean r;
-    Marker m = enter_section_(b);
     r = consumeTokenSmart(b, BITWISE_NOT);
     if (!r) r = consumeTokenSmart(b, MINUS);
     if (!r) r = consumeTokenSmart(b, PLUS);
-    exit_section_(b, m, null, r);
     return r;
   }
 
@@ -2275,13 +2224,11 @@ public class NASMParser implements PsiParser, LightPsiParser {
   private static boolean NumericLiteral_1(PsiBuilder b, int l) {
     if (!recursion_guard_(b, l, "NumericLiteral_1")) return false;
     boolean r;
-    Marker m = enter_section_(b);
     r = consumeTokenSmart(b, BINARY);
     if (!r) r = consumeTokenSmart(b, ZEROES);
     if (!r) r = consumeTokenSmart(b, HEXADECIMAL);
     if (!r) r = consumeTokenSmart(b, DECIMAL);
     if (!r) r = consumeTokenSmart(b, CHARACTER);
-    exit_section_(b, m, null, r);
     return r;
   }
 
@@ -2334,13 +2281,11 @@ public class NASMParser implements PsiParser, LightPsiParser {
   private static boolean SegmentAddress_1_0_1(PsiBuilder b, int l) {
     if (!recursion_guard_(b, l, "SegmentAddress_1_0_1")) return false;
     boolean r;
-    Marker m = enter_section_(b);
     r = consumeTokenSmart(b, HEXADECIMAL);
     if (!r) r = consumeTokenSmart(b, ZEROES);
     if (!r) r = MacroCall(b, l + 1);
     if (!r) r = consumeTokenSmart(b, ID);
     if (!r) r = consumeTokenSmart(b, LBL);
-    exit_section_(b, m, null, r);
     return r;
   }
 
@@ -2377,13 +2322,11 @@ public class NASMParser implements PsiParser, LightPsiParser {
   private static boolean SegmentAddress_1_1_1_1(PsiBuilder b, int l) {
     if (!recursion_guard_(b, l, "SegmentAddress_1_1_1_1")) return false;
     boolean r;
-    Marker m = enter_section_(b);
     r = consumeTokenSmart(b, HEXADECIMAL);
     if (!r) r = consumeTokenSmart(b, ZEROES);
     if (!r) r = MacroCall(b, l + 1);
     if (!r) r = consumeTokenSmart(b, ID);
     if (!r) r = consumeTokenSmart(b, LBL);
-    exit_section_(b, m, null, r);
     return r;
   }
 
@@ -2420,13 +2363,11 @@ public class NASMParser implements PsiParser, LightPsiParser {
   private static boolean SegmentAddress_1_2_1_1(PsiBuilder b, int l) {
     if (!recursion_guard_(b, l, "SegmentAddress_1_2_1_1")) return false;
     boolean r;
-    Marker m = enter_section_(b);
     r = consumeTokenSmart(b, HEXADECIMAL);
     if (!r) r = consumeTokenSmart(b, ZEROES);
     if (!r) r = MacroCall(b, l + 1);
     if (!r) r = consumeTokenSmart(b, ID);
     if (!r) r = consumeTokenSmart(b, LBL);
-    exit_section_(b, m, null, r);
     return r;
   }
 
@@ -2645,10 +2586,8 @@ public class NASMParser implements PsiParser, LightPsiParser {
   private static boolean LabelIdentifier_1(PsiBuilder b, int l) {
     if (!recursion_guard_(b, l, "LabelIdentifier_1")) return false;
     boolean r;
-    Marker m = enter_section_(b);
     r = consumeTokenSmart(b, LBL);
     if (!r) r = consumeTokenSmart(b, ID);
-    exit_section_(b, m, null, r);
     return r;
   }
 

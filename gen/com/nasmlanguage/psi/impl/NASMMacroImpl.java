@@ -13,7 +13,7 @@ import com.nasmlanguage.psi.*;
 
 public class NASMMacroImpl extends ASTWrapperPsiElement implements NASMMacro {
 
-  public NASMMacroImpl(ASTNode node) {
+  public NASMMacroImpl(@NotNull ASTNode node) {
     super(node);
   }
 

@@ -32,6 +32,9 @@ public interface NASMPreprocessor extends PsiElement {
   NASMStrlen getStrlen();
 
   @Nullable
+  NASMUndef getUndef();
+
+  @Nullable
   PsiElement getPreprocessorOp();
 
 }

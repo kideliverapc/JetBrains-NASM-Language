@@ -12,7 +12,7 @@ import com.nasmlanguage.psi.*;
 
 public class NASMMacroCallImpl extends NASMExprImpl implements NASMMacroCall {
 
-  public NASMMacroCallImpl(ASTNode node) {
+  public NASMMacroCallImpl(@NotNull ASTNode node) {
     super(node);
   }
 
