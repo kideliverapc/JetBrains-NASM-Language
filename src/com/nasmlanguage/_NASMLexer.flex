@@ -32,6 +32,7 @@ EQU=([eE][qQ][uU])
 SEGMENT_ADDR_L=((0[xX][0-9a-fA-F]+|0[hH][0-9a-fA-F]+|\$[0-9]+[0-9a-fA-F]*|[0-9]+[0-9a-fA-F]*[hH])|[0]*):
 INCLUDE_TAG=(({WHITE_SPACE})?[#%]({WHITE_SPACE})?)([iI][nN][cC][lL][uU][dD][eE])
 DEFINE_TAG=(({WHITE_SPACE})?[#%]({WHITE_SPACE})?)(([xX]|[iI])?[dD][eE][fF][iI][nN][eE])
+UNDEF_TAG=(({WHITE_SPACE})?[#%]({WHITE_SPACE})?)([uU][nN][dD][eE][fF])
 ASSIGN_TAG=(({WHITE_SPACE})?[#%]({WHITE_SPACE})?)([iI]?[aA][sS][sS][iI][gG][nN])
 MACRO_TAG=(({WHITE_SPACE})?[#%]({WHITE_SPACE})?)([iI]?[mM][aA][cC][rR][oO])
 MACRO_END_TAG=(({WHITE_SPACE})?[#%]({WHITE_SPACE})?)([iI]?[eE][nN][dD][mM][aA][cC][rR][oO])
@@ -215,6 +216,7 @@ STRING=('([^'\\]|\\.)*'|\"([^\"\\]|\\.)*\")
   {SEGMENT_ADDR_L}            { return SEGMENT_ADDR_L; }
   {INCLUDE_TAG}               { return INCLUDE_TAG; }
   {DEFINE_TAG}                { return DEFINE_TAG; }
+  {UNDEF_TAG}                 { return UNDEF_TAG; }
   {ASSIGN_TAG}                { return ASSIGN_TAG; }
   {MACRO_TAG}                 { return MACRO_TAG; }
   {MACRO_END_TAG}             { return MACRO_END_TAG; }

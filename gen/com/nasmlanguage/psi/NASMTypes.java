@@ -56,6 +56,7 @@ public interface NASMTypes {
   IElementType STRUC = new NASMElementType("STRUC");
   IElementType STRUCTURE = new NASMElementType("STRUCTURE");
   IElementType STRUCTURE_FIELD = new NASMElementType("STRUCTURE_FIELD");
+  IElementType UNDEF = new NASMElementType("UNDEF");
 
   IElementType ASSIGN_TAG = new NASMTokenType("ASSIGN_TAG");
   IElementType AT_TAG = new NASMTokenType("AT_TAG");
@@ -230,6 +231,7 @@ public interface NASMTypes {
   IElementType STRUC_TAG = new NASMTokenType("STRUC_TAG");
   IElementType SYSTEM_OP = new NASMTokenType("SYSTEM_OP");
   IElementType TIMES = new NASMTokenType("*");
+  IElementType UNDEF_TAG = new NASMTokenType("UNDEF_TAG");
   IElementType VIRTUALIZATION_OP = new NASMTokenType("VIRTUALIZATION_OP");
   IElementType X64_OP = new NASMTokenType("X64_OP");
   IElementType ZEROES = new NASMTokenType("ZEROES");
@@ -237,7 +239,7 @@ public interface NASMTypes {
   class Factory {
     public static PsiElement createElement(ASTNode node) {
       IElementType type = node.getElementType();
-       if (type == ADDRESS) {
+      if (type == ADDRESS) {
         return new NASMAddressImpl(node);
       }
       else if (type == ASSIGN) {
@@ -377,6 +379,9 @@ public interface NASMTypes {
       }
       else if (type == STRUCTURE_FIELD) {
         return new NASMStructureFieldImpl(node);
+      }
+      else if (type == UNDEF) {
+        return new NASMUndefImpl(node);
       }
       throw new AssertionError("Unknown element type: " + type);
     }

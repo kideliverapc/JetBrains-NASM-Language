@@ -51,6 +51,7 @@ SOFTWARE.
 
         INCLUDE_TAG         = 'regexp:(({WHITE_SPACE})?[#%]({WHITE_SPACE})?)([iI][nN][cC][lL][uU][dD][eE])'
         DEFINE_TAG          = 'regexp:(({WHITE_SPACE})?[#%]({WHITE_SPACE})?)(([xX]|[iI])?[dD][eE][fF][iI][nN][eE])'
+        UNDEF_TAG           = 'regexp:(({WHITE_SPACE})?[#%]({WHITE_SPACE})?)([uU][nN][dD][eE][fF])'
         ASSIGN_TAG          = 'regexp:(({WHITE_SPACE})?[#%]({WHITE_SPACE})?)([iI]?[aA][sS][sS][iI][gG][nN])'
 
         MACRO_TAG           = 'regexp:(({WHITE_SPACE})?[#%]({WHITE_SPACE})?)([iI]?[mM][aA][cC][rR][oO])'
@@ -296,10 +297,11 @@ private Element ::= COMMENT | SEMICOLON | COMMENT CRLF | CRLF
 private Section ::= (((SQUARE_L SECTION SQUARE_R) | SECTION) CRLF*)
 private Segment ::= (((SQUARE_L SEGMENT SQUARE_R) | SEGMENT) CRLF*)
 
-Preprocessor ::= Include | Define | Assign | Macro | Strlen | Error | Conditional | (PREPROCESSOR_OP Identifier Expr)
+Preprocessor ::= Include | Define | Undef | Assign | Macro | Strlen | Error | Conditional | (PREPROCESSOR_OP Identifier Expr)
 Include ::= (INCLUDE_TAG STRING) {methods=[getIncludeString]}
 Define ::= (DEFINE_TAG Identifier ROUND_L (Identifier (SEPARATOR Identifier)*)? ROUND_R Expr CRLF*)
         | (DEFINE_TAG Identifier (Expr|(PERCENT SQUARE_L Expr SQUARE_R)) CRLF*) {methods=[getDefineIdentifier getDefineIdentifierString]}
+Undef ::= (UNDEF_TAG Identifier) CRLF*
 Assign ::= (ASSIGN_TAG Identifier Expr)
 Macro ::= MACRO_TAG (Identifier MacroParams MacroDefaultParam? CRLF* (MacroLabel|Data|Instruction|Preprocessor|ID CRLF*)*) MACRO_END_TAG { pin=1 methods=[getMacroIdentifier]}
 MacroLabel ::= (MACRO_PARAM_LBL_DEF (Instruction|Data)? CRLF*)
