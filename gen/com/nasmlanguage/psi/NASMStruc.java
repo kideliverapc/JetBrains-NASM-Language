@@ -11,6 +11,9 @@ public interface NASMStruc extends PsiElement {
   List<NASMIdentifier> getIdentifierList();
 
   @NotNull
+  List<NASMLabelDef> getLabelDefList();
+
+  @NotNull
   List<NASMLabelIdentifier> getLabelIdentifierList();
 
   @NotNull

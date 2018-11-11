@@ -34,6 +34,12 @@ public class NASMStrucImpl extends ASTWrapperPsiElement implements NASMStruc {
 
   @Override
   @NotNull
+  public List<NASMLabelDef> getLabelDefList() {
+    return PsiTreeUtil.getChildrenOfTypeAsList(this, NASMLabelDef.class);
+  }
+
+  @Override
+  @NotNull
   public List<NASMLabelIdentifier> getLabelIdentifierList() {
     return PsiTreeUtil.getChildrenOfTypeAsList(this, NASMLabelIdentifier.class);
   }

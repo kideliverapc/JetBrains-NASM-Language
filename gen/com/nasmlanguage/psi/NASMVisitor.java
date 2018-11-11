@@ -100,6 +100,10 @@ public class NASMVisitor extends PsiElementVisitor {
     visitPsiElement(o);
   }
 
+  public void visitLabelDef(@NotNull NASMLabelDef o) {
+    visitPsiElement(o);
+  }
+
   public void visitLabelDefMacro(@NotNull NASMLabelDefMacro o) {
     visitPsiElement(o);
   }

@@ -73,11 +73,9 @@ public class NASMPsiImplUtil {
 
     @SuppressWarnings("ConstantConditions")
     public static String getLabelIdentifierString(NASMLabel element) {
-        PsiElement labelDef = element.getLblDef();
-        if (labelDef != null) {
-            String labelDefString = labelDef.getText();
-            return labelDefString.substring(0, labelDefString.indexOf(':')).trim();
-        }
+        PsiElement labelIdentifier = element.getLabelDef().getLabelIdentifier().getId();
+        if (labelIdentifier != null)
+            return labelIdentifier.getText();
         return null;
     }
 

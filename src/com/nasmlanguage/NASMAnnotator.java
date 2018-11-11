@@ -147,13 +147,10 @@ public class NASMAnnotator implements Annotator {
             }
             // Label def
             else {
-                segmentElement = nasmSegmentAddress.getLblDef();
+                segmentElement = nasmSegmentAddress.getLabelDef().getLabelIdentifier();
                 if (segmentElement != null) { // Its an identifer on the left
-                    String lblDefText = segmentElement.getText();
-                    int separatorIdx = lblDefText.indexOf(':');
+                    String identifierText = segmentElement.getText();
                     TextRange tr = segmentElement.getTextRange();
-                    highlightTextRange(tr.getStartOffset() + separatorIdx, 1, NASMSyntaxHighlighter.NASM_SEPARATOR, holder);
-                    String identifierText = lblDefText.substring(0, separatorIdx).trim();
                     boolean found = false;
                     // Search for a constant
                     List<NASMConstant> constants = NASMUtil.findConstants(element.getContainingFile());

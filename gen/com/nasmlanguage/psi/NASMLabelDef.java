@@ -5,12 +5,9 @@ import java.util.List;
 import org.jetbrains.annotations.*;
 import com.intellij.psi.PsiElement;
 
-public interface NASMSeg extends NASMExpr {
+public interface NASMLabelDef extends PsiElement {
 
   @NotNull
-  PsiElement getHexadecimal();
-
-  @NotNull
-  PsiElement getSegmentRegister();
+  NASMLabelIdentifier getLabelIdentifier();
 
 }

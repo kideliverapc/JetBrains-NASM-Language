@@ -237,7 +237,7 @@ SOFTWARE.
 
         // Make last!
         ID                  = 'regexp:([a-zA-Z_]+[a-zA-Z0-9_%]*)' // Some identifier
-        LBL_DEF             = 'regexp:([a-zA-Z$._?#@\126]+[a-zA-Z0-9_]*):' // Label definition
+        // LBL_DEF             = 'regexp:([a-zA-Z$._?#@\126]+[a-zA-Z0-9_]*):' // Label definition
         LBL                 = 'regexp:([a-zA-Z$._?#@\126]+[a-zA-Z0-9_]*)' // Label can have chars like '%', '.', '?', '@', etc
 
         // Literals
@@ -313,7 +313,8 @@ Conditional ::= (IF_TAG Condition CRLF* (Preprocessor|Constant|Directive|Label|S
             | (IFMACRO_TAG Identifier MacroParams MacroDefaultParam? CRLF* (Preprocessor|Directive|Data|Instruction)* ENDIF_TAG)
 private Condition ::= ((Expr EQUALEQUAL Expr)|Expr)
 
-Label ::= (((LBL_DEF (Instruction|Data|Structure)?) | (LabelDefMacro (Instruction|Data|Structure)?)) CRLF*) {methods=[getLabelIdentifierString]} // (((LBL_DEF (Instruction|Data|Structure)?)|LabelInstruction|LabelData) CRLF*)
+Label ::= (((LabelDef (Instruction|Data|Structure)?) | (LabelDefMacro (Instruction|Data|Structure)?)) CRLF*) {methods=[getLabelIdentifierString]} // (((LBL_DEF (Instruction|Data|Structure)?)|LabelInstruction|LabelData) CRLF*)
+LabelDef ::= (LabelIdentifier COLON CRLF*)
 LabelDefMacro ::= (MacroCall COLON CRLF*)
 Constant ::= (Identifier EQU ((MINUS|PLUS)? NumericExpr) CRLF*) {methods=[getConstantIdentifierString]}
 
@@ -322,7 +323,7 @@ Data ::= (Identifier? DATA_OP DataValue)
 private DataValue ::= ((MINUS|PLUS)? (NumericExpr|STRING|LabelIdentifier) (SEPARATOR ((MINUS|PLUS)? (NumericExpr|STRING|LabelIdentifier)))* COMMENT?)
 
 Structure ::= ((Struc|IStruc) CRLF*)
-Struc ::= (STRUC_TAG Identifier CRLF* (((LBL_DEF|LabelIdentifier) DATA_OP ((MINUS|PLUS)? (NumericExpr|Identifier)) CRLF*)|((LabelIdentifier|LBL_DEF) CRLF*))* ENDSTRUC_TAG)
+Struc ::= (STRUC_TAG Identifier CRLF* (((LabelDef|LabelIdentifier) DATA_OP ((MINUS|PLUS)? (NumericExpr|Identifier)) CRLF*)|((LabelIdentifier|LabelDef) CRLF*))* ENDSTRUC_TAG)
 IStruc ::= (ISTRUC_TAG Identifier CRLF* (AT_TAG (StructureField|LabelIdentifier|Identifier) SEPARATOR DATA_OP DataValue CRLF*)* IEND_TAG)
 
 //LabelInstruction ::= (((LBL_INS ((Expr SEPARATOR)* Expr)?)|Directive|MacroCall) CRLF*) {methods=[getLabelIdentifierString]}
@@ -408,11 +409,11 @@ NumericLiteral ::= ((SIZE_TYPE (BITWISE_NOT|MINUS|PLUS)?)? (BINARY|ZEROES|HEXADE
 Identifier ::= (ID) { extends=Expr mixin="com.nasmlanguage.psi.impl.NASMNamedElementImpl" implements="com.nasmlanguage.psi.NASMNamedElement" methods=[getName setName getNameIdentifier getReferences getPresentation] }
 LabelIdentifier ::= (SIZE_TYPE? (LBL|ID)) { extends=Expr }
 Reg ::= REGISTER { extends=Expr }
-Seg ::= SEGMENT_REGISTER { extends=Expr }
+Seg ::= SEGMENT_REGISTER COLON HEXADECIMAL { extends=Expr }
 Str ::= STRING { extends=Expr }
 StructureField ::= STRUCT_FIELD { extends=Expr }
 SegmentAddress ::= (SIZE_TYPE? ((SEGMENT_ADDR_L (HEXADECIMAL|ZEROES|MacroCall|ID|LBL))|
-                                (LBL_DEF (SIZE_TYPE? (HEXADECIMAL|ZEROES|MacroCall|ID|LBL)))|
+                                (LabelDef (SIZE_TYPE? (HEXADECIMAL|ZEROES|MacroCall|ID|LBL)))|
                                 (LabelDefMacro (SIZE_TYPE? (HEXADECIMAL|ZEROES|MacroCall|ID|LBL))))) { extends=Expr }
 Address ::= ((SIZE_TYPE? AddressInternal)|DOLLARSIGN|DOLLARSIGN2) { extends=Expr }
 private AddressInternal ::= (SQUARE_L MINUS? Expr SQUARE_R) { pin(".*")=1 }

@@ -40,6 +40,12 @@ public class NASMLabelImpl extends ASTWrapperPsiElement implements NASMLabel {
 
   @Override
   @Nullable
+  public NASMLabelDef getLabelDef() {
+    return findChildByClass(NASMLabelDef.class);
+  }
+
+  @Override
+  @Nullable
   public NASMLabelDefMacro getLabelDefMacro() {
     return findChildByClass(NASMLabelDefMacro.class);
   }
@@ -48,12 +54,6 @@ public class NASMLabelImpl extends ASTWrapperPsiElement implements NASMLabel {
   @Nullable
   public NASMStructure getStructure() {
     return findChildByClass(NASMStructure.class);
-  }
-
-  @Override
-  @Nullable
-  public PsiElement getLblDef() {
-    return findChildByType(LBL_DEF);
   }
 
   public String getLabelIdentifierString() {

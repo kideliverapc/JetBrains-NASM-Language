@@ -31,6 +31,7 @@ public interface NASMTypes {
   IElementType INSTRUCTION = new NASMElementType("INSTRUCTION");
   IElementType I_STRUC = new NASMElementType("I_STRUC");
   IElementType LABEL = new NASMElementType("LABEL");
+  IElementType LABEL_DEF = new NASMElementType("LABEL_DEF");
   IElementType LABEL_DEF_MACRO = new NASMElementType("LABEL_DEF_MACRO");
   IElementType LABEL_IDENTIFIER = new NASMElementType("LABEL_IDENTIFIER");
   IElementType MACRO = new NASMElementType("MACRO");
@@ -193,7 +194,6 @@ public interface NASMTypes {
   IElementType INS_SYSTEM = new NASMTokenType("INS_SYSTEM");
   IElementType ISTRUC_TAG = new NASMTokenType("ISTRUC_TAG");
   IElementType LBL = new NASMTokenType("LBL");
-  IElementType LBL_DEF = new NASMTokenType("LBL_DEF");
   IElementType MACRO_END_TAG = new NASMTokenType("MACRO_END_TAG");
   IElementType MACRO_PARAM_LBL_DEF = new NASMTokenType("MACRO_PARAM_LBL_DEF");
   IElementType MACRO_PARAM_REF = new NASMTokenType("MACRO_PARAM_REF");
@@ -304,6 +304,9 @@ public interface NASMTypes {
       }
       else if (type == LABEL) {
         return new NASMLabelImpl(node);
+      }
+      else if (type == LABEL_DEF) {
+        return new NASMLabelDefImpl(node);
       }
       else if (type == LABEL_DEF_MACRO) {
         return new NASMLabelDefMacroImpl(node);

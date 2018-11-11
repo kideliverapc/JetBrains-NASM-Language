@@ -8,16 +8,17 @@ import com.intellij.psi.PsiElement;
 import com.intellij.psi.PsiElementVisitor;
 import com.intellij.psi.util.PsiTreeUtil;
 import static com.nasmlanguage.psi.NASMTypes.*;
+import com.intellij.extapi.psi.ASTWrapperPsiElement;
 import com.nasmlanguage.psi.*;
 
-public class NASMSegImpl extends NASMExprImpl implements NASMSeg {
+public class NASMLabelDefImpl extends ASTWrapperPsiElement implements NASMLabelDef {
 
-  public NASMSegImpl(@NotNull ASTNode node) {
+  public NASMLabelDefImpl(@NotNull ASTNode node) {
     super(node);
   }
 
   public void accept(@NotNull NASMVisitor visitor) {
-    visitor.visitSeg(this);
+    visitor.visitLabelDef(this);
   }
 
   public void accept(@NotNull PsiElementVisitor visitor) {
@@ -27,14 +28,8 @@ public class NASMSegImpl extends NASMExprImpl implements NASMSeg {
 
   @Override
   @NotNull
-  public PsiElement getHexadecimal() {
-    return findNotNullChildByType(HEXADECIMAL);
-  }
-
-  @Override
-  @NotNull
-  public PsiElement getSegmentRegister() {
-    return findNotNullChildByType(SEGMENT_REGISTER);
+  public NASMLabelIdentifier getLabelIdentifier() {
+    return findNotNullChildByClass(NASMLabelIdentifier.class);
   }
 
 }

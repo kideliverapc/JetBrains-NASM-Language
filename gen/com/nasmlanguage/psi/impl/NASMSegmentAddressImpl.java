@@ -27,6 +27,12 @@ public class NASMSegmentAddressImpl extends NASMExprImpl implements NASMSegmentA
 
   @Override
   @Nullable
+  public NASMLabelDef getLabelDef() {
+    return findChildByClass(NASMLabelDef.class);
+  }
+
+  @Override
+  @Nullable
   public NASMLabelDefMacro getLabelDefMacro() {
     return findChildByClass(NASMLabelDefMacro.class);
   }
@@ -53,12 +59,6 @@ public class NASMSegmentAddressImpl extends NASMExprImpl implements NASMSegmentA
   @Nullable
   public PsiElement getLbl() {
     return findChildByType(LBL);
-  }
-
-  @Override
-  @Nullable
-  public PsiElement getLblDef() {
-    return findChildByType(LBL_DEF);
   }
 
   @Override
