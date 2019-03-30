@@ -298,6 +298,7 @@ private Segment ::= (((SQUARE_L SEGMENT SQUARE_R) | SEGMENT) CRLF*)
 
 Preprocessor ::= Include
                 | Define
+                | Undef
                 | Assign
                 | Macro
                 | MacroCall

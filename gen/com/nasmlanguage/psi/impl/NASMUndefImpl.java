@@ -32,10 +32,4 @@ public class NASMUndefImpl extends ASTWrapperPsiElement implements NASMUndef {
     return findNotNullChildByClass(NASMIdentifier.class);
   }
 
-  @Override
-  @NotNull
-  public PsiElement getUndefTag() {
-    return findNotNullChildByType(UNDEF_TAG);
-  }
-
 }

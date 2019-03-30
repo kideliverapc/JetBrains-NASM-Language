@@ -10,7 +10,4 @@ public interface NASMUndef extends PsiElement {
   @NotNull
   NASMIdentifier getIdentifier();
 
-  @NotNull
-  PsiElement getUndefTag();
-
 }

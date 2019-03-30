@@ -1854,6 +1854,7 @@ public class NASMParser implements PsiParser, LightPsiParser {
   /* ********************************************************** */
   // Include
   //                 | Define
+  //                 | Undef
   //                 | Assign
   //                 | Macro
   //                 | MacroCall
@@ -1874,14 +1875,14 @@ public class NASMParser implements PsiParser, LightPsiParser {
     if (!r) r = Strlen(b, l + 1);
     if (!r) r = Error(b, l + 1);
     if (!r) r = Conditional(b, l + 1);
-    if (!r) r = Preprocessor_8(b, l + 1);
+    if (!r) r = Preprocessor_9(b, l + 1);
     exit_section_(b, l, m, r, false, null);
     return r;
   }
 
   // PREPROCESSOR_OP Identifier Expr
-  private static boolean Preprocessor_8(PsiBuilder b, int l) {
-    if (!recursion_guard_(b, l, "Preprocessor_8")) return false;
+  private static boolean Preprocessor_9(PsiBuilder b, int l) {
+    if (!recursion_guard_(b, l, "Preprocessor_9")) return false;
     boolean r;
     Marker m = enter_section_(b);
     r = consumeToken(b, PREPROCESSOR_OP);

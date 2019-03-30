@@ -54,6 +54,7 @@ EQU=([eE][qQ][uU])
 SEGMENT_ADDR_L=((0[xX][0-9a-fA-F]+|0[hH][0-9a-fA-F]+|\$[0-9]+[0-9a-fA-F]*|[0-9]+[0-9a-fA-F]*[hH])|[0]*):
 INCLUDE_TAG=(([ \t\n\x0B\f\r]+)?[#%]([ \t\n\x0B\f\r]+)?)([iI][nN][cC][lL][uU][dD][eE])
 DEFINE_TAG=(([ \t\n\x0B\f\r]+)?[#%]([ \t\n\x0B\f\r]+)?)(([xX]|[iI])?[dD][eE][fF][iI][nN][eE])
+UNDEF_TAG=(([ \t\n\x0B\f\r]+)?[#%]([ \t\n\x0B\f\r]+)?)([uU][nN][dD][eE][fF])
 ASSIGN_TAG=(([ \t\n\x0B\f\r]+)?[#%]([ \t\n\x0B\f\r]+)?)([iI]?[aA][sS][sS][iI][gG][nN])
 MACRO_TAG=(([ \t\n\x0B\f\r]+)?[#%]([ \t\n\x0B\f\r]+)?)([iI]?[mM][aA][cC][rR][oO])
 MACRO_END_TAG=(([ \t\n\x0B\f\r]+)?[#%]([ \t\n\x0B\f\r]+)?)([iI]?[eE][nN][dD][mM][aA][cC][rR][oO])
