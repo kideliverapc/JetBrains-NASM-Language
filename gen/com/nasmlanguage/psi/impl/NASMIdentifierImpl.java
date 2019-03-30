@@ -46,8 +46,8 @@ public class NASMIdentifierImpl extends NASMNamedElementImpl implements NASMIden
   }
 
   @NotNull
-  public PsiReference[] getReferences() {
-    return NASMPsiImplUtil.getReferences(this);
+  public PsiReference getReference() {
+    return NASMPsiImplUtil.getReference(this);
   }
 
   public ItemPresentation getPresentation() {

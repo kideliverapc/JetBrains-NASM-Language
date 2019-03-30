@@ -4,7 +4,10 @@ import com.intellij.codeInsight.lookup.*;
 import com.intellij.openapi.project.Project;
 import com.intellij.openapi.util.TextRange;
 import com.intellij.psi.*;
+import com.nasmlanguage.psi.NASMDefine;
+import com.nasmlanguage.psi.NASMDirective;
 import com.nasmlanguage.psi.NASMIdentifier;
+import com.nasmlanguage.psi.NASMLabel;
 import org.jetbrains.annotations.*;
 
 import java.util.*;
@@ -17,14 +20,23 @@ public class NASMReference extends PsiReferenceBase<PsiElement> implements PsiPo
         id = element.getText();
     }
 
+    public NASMReference(@NotNull PsiElement element) {
+        super(element);
+        id = element.getText();
+    }
+
     @NotNull
     @Override
     public ResolveResult[] multiResolve(boolean incompleteCode) {
-        Project project = myElement.getProject();
-        final List<NASMIdentifier> identifiers = NASMUtil.findIdentifierReferencesByStringInProject(project, id);
+        // Project project = myElement.getProject();
+        PsiFile file = myElement.getContainingFile();
+        final List<NASMIdentifier> identifiers = NASMUtil.findIdentifierReferencesByString(file, id);
         List<ResolveResult> results = new ArrayList<ResolveResult>();
         for (NASMIdentifier identifier : identifiers) {
-            results.add(new PsiElementResolveResult(identifier));
+            if (identifier.getParent() instanceof NASMLabel)
+                results.add(new PsiElementResolveResult(identifier));
+            if (identifier.getParent() instanceof NASMDefine)
+                results.add(new PsiElementResolveResult(identifier));
         }
         return results.toArray(new ResolveResult[results.size()]);
     }
@@ -51,6 +63,11 @@ public class NASMReference extends PsiReferenceBase<PsiElement> implements PsiPo
             }
         }
         return variants.toArray();
+    }
+
+    @Override
+    public TextRange getRangeInElement() {
+        return TextRange.from(0, getElement().getTextLength());
     }
 
 }

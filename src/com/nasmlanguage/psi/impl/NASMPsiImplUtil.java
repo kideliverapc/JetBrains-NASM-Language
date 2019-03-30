@@ -79,6 +79,11 @@ public class NASMPsiImplUtil {
         return null;
     }
 
+    @NotNull
+    public static PsiReference getReference(@NotNull NASMIdentifier element) {
+        return new NASMReference(element);
+    }
+
     @SuppressWarnings("ConstantConditions")
     public static String getConstantIdentifierString(NASMConstant element) {
         PsiElement identifier = element.getIdentifier().getId();
