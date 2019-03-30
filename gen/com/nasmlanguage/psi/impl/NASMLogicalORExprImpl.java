@@ -8,17 +8,16 @@ import com.intellij.psi.PsiElement;
 import com.intellij.psi.PsiElementVisitor;
 import com.intellij.psi.util.PsiTreeUtil;
 import static com.nasmlanguage.psi.NASMTypes.*;
-import com.intellij.extapi.psi.ASTWrapperPsiElement;
 import com.nasmlanguage.psi.*;
 
-public class NASMStrlenImpl extends ASTWrapperPsiElement implements NASMStrlen {
+public class NASMLogicalORExprImpl extends NASMExprImpl implements NASMLogicalORExpr {
 
-  public NASMStrlenImpl(@NotNull ASTNode node) {
+  public NASMLogicalORExprImpl(@NotNull ASTNode node) {
     super(node);
   }
 
   public void accept(@NotNull NASMVisitor visitor) {
-    visitor.visitStrlen(this);
+    visitor.visitLogicalORExpr(this);
   }
 
   public void accept(@NotNull PsiElementVisitor visitor) {
@@ -28,26 +27,8 @@ public class NASMStrlenImpl extends ASTWrapperPsiElement implements NASMStrlen {
 
   @Override
   @NotNull
-  public NASMIdentifier getIdentifier() {
-    return findNotNullChildByClass(NASMIdentifier.class);
-  }
-
-  @Override
-  @Nullable
-  public PsiElement getId() {
-    return findChildByType(ID);
-  }
-
-  @Override
-  @Nullable
-  public PsiElement getString() {
-    return findChildByType(STRING);
-  }
-
-  @Override
-  @NotNull
-  public PsiElement getStrlenTag() {
-    return findNotNullChildByType(STRLEN_TAG);
+  public List<NASMExpr> getExprList() {
+    return PsiTreeUtil.getChildrenOfTypeAsList(this, NASMExpr.class);
   }
 
 }

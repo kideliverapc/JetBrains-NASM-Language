@@ -11,11 +11,9 @@ public interface NASMConstant extends PsiElement {
   NASMIdentifier getIdentifier();
 
   @NotNull
-  NASMNumericExpr getNumericExpr();
+  List<NASMNumericExpr> getNumericExprList();
 
   @NotNull
   PsiElement getEqu();
-
-  String getConstantIdentifierString();
 
 }

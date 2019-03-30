@@ -27,14 +27,14 @@ public class NASMSegmentAddressImpl extends NASMExprImpl implements NASMSegmentA
 
   @Override
   @Nullable
-  public NASMLabelDefMacro getLabelDefMacro() {
-    return findChildByClass(NASMLabelDefMacro.class);
+  public NASMExpr getExpr() {
+    return findChildByClass(NASMExpr.class);
   }
 
   @Override
   @Nullable
-  public NASMMacroCall getMacroCall() {
-    return findChildByClass(NASMMacroCall.class);
+  public NASMLabelDefMacro getLabelDefMacro() {
+    return findChildByClass(NASMLabelDefMacro.class);
   }
 
   @Override

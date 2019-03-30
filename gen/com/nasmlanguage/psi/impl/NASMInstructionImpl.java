@@ -27,12 +27,6 @@ public class NASMInstructionImpl extends ASTWrapperPsiElement implements NASMIns
   }
 
   @Override
-  @Nullable
-  public NASMDirective getDirective() {
-    return findChildByClass(NASMDirective.class);
-  }
-
-  @Override
   @NotNull
   public List<NASMExpr> getExprList() {
     return PsiTreeUtil.getChildrenOfTypeAsList(this, NASMExpr.class);
@@ -66,6 +60,12 @@ public class NASMInstructionImpl extends ASTWrapperPsiElement implements NASMIns
   @Nullable
   public PsiElement getGeneralOp() {
     return findChildByType(GENERAL_OP);
+  }
+
+  @Override
+  @Nullable
+  public PsiElement getId() {
+    return findChildByType(ID);
   }
 
   @Override

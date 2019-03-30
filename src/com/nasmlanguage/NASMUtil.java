@@ -1,7 +1,7 @@
 /*++
 
 NASM Assembly Language Plugin
-Copyright (c) 2017-2018 Aidan Khoury
+Copyright (c) 2017-2019 Aidan Khoury. All rights reserved.
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
@@ -26,7 +26,6 @@ SOFTWARE.
 package com.nasmlanguage;
 
 import com.intellij.openapi.project.Project;
-import com.intellij.openapi.vfs.LocalFileSystem;
 import com.intellij.openapi.vfs.VirtualFile;
 import com.intellij.psi.PsiElement;
 import com.intellij.psi.PsiFile;
@@ -39,54 +38,6 @@ import com.nasmlanguage.psi.*;
 import java.util.*;
 
 class NASMUtil {
-
-    static List<PsiElement> findPreprocessorMacrosAndDefines(Project project) {
-        List<PsiElement> result = new ArrayList<>();
-        Collection<VirtualFile> virtualFiles = FileBasedIndex.getInstance().getContainingFiles(
-                FileTypeIndex.NAME, NASMFileType.INSTANCE, GlobalSearchScope.allScope(project)
-        );
-        for (VirtualFile virtualFile : virtualFiles) {
-            NASMFile assemblyFile = (NASMFile)PsiManager.getInstance(project).findFile(virtualFile);
-            if (assemblyFile != null) {
-                Collection<NASMPreprocessor> nasmPreprocessors = PsiTreeUtil.collectElementsOfType(assemblyFile, NASMPreprocessor.class);
-                if (!nasmPreprocessors.isEmpty()) {
-                    for (NASMPreprocessor nasmPreprocessor : nasmPreprocessors) {
-                        NASMMacro macro = nasmPreprocessor.getMacro();
-                        if (macro != null) {
-                            result.add(macro);
-                            continue;
-                        }
-                        NASMDefine define = nasmPreprocessor.getDefine();
-                        if (define != null) {
-                            result.add(define);
-                        }
-                    }
-                }
-            }
-        }
-        return result;
-    }
-
-    static List<NASMMacro> findPreprocessorMacros(Project project) {
-        List<NASMMacro> result = new ArrayList<>();
-        Collection<VirtualFile> virtualFiles = FileBasedIndex.getInstance().getContainingFiles(
-            FileTypeIndex.NAME, NASMFileType.INSTANCE, GlobalSearchScope.allScope(project)
-        );
-        for (VirtualFile virtualFile : virtualFiles) {
-            NASMFile assemblyFile = (NASMFile)PsiManager.getInstance(project).findFile(virtualFile);
-            if (assemblyFile != null) {
-                Collection<NASMPreprocessor> nasmPreprocessors = PsiTreeUtil.collectElementsOfType(assemblyFile, NASMPreprocessor.class);
-                if (!nasmPreprocessors.isEmpty()) {
-                    for (NASMPreprocessor nasmPreprocessor : nasmPreprocessors) {
-                        NASMMacro macro = nasmPreprocessor.getMacro();
-                        if (macro != null)
-                            result.add(macro);
-                    }
-                }
-            }
-        }
-        return result;
-    }
 
     static List<NASMDefine> findPreprocessorDefines(PsiFile containingFile) {
         List<NASMDefine> result = new ArrayList<>();
@@ -159,29 +110,6 @@ class NASMUtil {
         if (!nasmConstants.isEmpty())
             result.addAll(nasmConstants);
 
-        // Makes this plugin perform like shit
-        //Project project = containingFile.getProject();
-        //// Then check each include file for constants
-        //Collection<VirtualFile> virtualFiles = FileBasedIndex.getInstance().getContainingFiles(
-        //        FileTypeIndex.NAME, NASMFileType.INSTANCE, GlobalSearchScope.allScope(project)
-        //);
-        //Collection<NASMInclude> includes = PsiTreeUtil.collectElementsOfType(containingFile, NASMInclude.class);
-        //for (NASMInclude include : includes) {
-        //    String includeFileName = include.getIncludeString();
-        //    for (VirtualFile virtualFile : virtualFiles) {
-        //        String virtFileName = virtualFile.getName();
-        //        if (virtFileName.equals(includeFileName)) {
-        //            NASMFile assemblyFile = (NASMFile)PsiManager.getInstance(project).findFile(virtualFile);
-        //            if (assemblyFile != null) {
-        //                nasmConstants = PsiTreeUtil.collectElementsOfType(assemblyFile, NASMConstant.class);
-        //                if (!nasmConstants.isEmpty()) {
-        //                    result.addAll(nasmConstants);
-        //                }
-        //            }
-        //        }
-        //    }
-        //}
-
         return result;
     }
 
@@ -220,36 +148,6 @@ class NASMUtil {
                     }
                 }
             }
-
-            //Project project = containingFile.getProject();
-            //// Then check each include file for identifiers
-            //Collection<VirtualFile> virtualFiles = FileBasedIndex.getInstance().getContainingFiles(
-            //        FileTypeIndex.NAME, NASMFileType.INSTANCE, GlobalSearchScope.allScope(project)
-            //);
-            //Collection<NASMInclude> includes = PsiTreeUtil.collectElementsOfType(containingFile, NASMInclude.class);
-            //for (NASMInclude include : includes) {
-            //    String includeFileName = include.getIncludeString();
-            //    for (VirtualFile virtualFile : virtualFiles) {
-            //        String virtFileName = virtualFile.getName();
-            //        if (virtFileName.equals(includeFileName)) {
-            //            NASMFile assemblyFile = (NASMFile)PsiManager.getInstance(project).findFile(virtualFile);
-            //            if (assemblyFile != null) {
-            //                nasmIdentifiers = PsiTreeUtil.collectElementsOfType(assemblyFile, NASMIdentifier.class);
-            //                if (!nasmIdentifiers.isEmpty()) {
-            //                    for (NASMIdentifier nasmIdentifier : nasmIdentifiers) {
-            //                        if (nasmIdentifier == identifier) continue;
-            //                        PsiElement nasmIdentifierId = nasmIdentifier.getId();
-            //                        if (nasmIdentifierId != null) {
-            //                            if (nasmIdentifierId.getText().equals(targetIdentifierId.getText())) {
-            //                                result.add(nasmIdentifier);
-            //                            }
-            //                        }
-            //                    }
-            //                }
-            //            }
-            //        }
-            //    }
-            //}
         }
 
         return result;
@@ -267,27 +165,6 @@ class NASMUtil {
                 result.add(nasmIdentifier);
             }
         }
-
-        //List<NASMIdentifier> result = null;
-        //Collection<VirtualFile> virtualFiles = FileBasedIndex.getInstance().getContainingFiles(FileTypeIndex.NAME,
-        //        NASMFileType.INSTANCE, GlobalSearchScope.allScope(project));
-        //for (VirtualFile virtualFile : virtualFiles) {
-        //    NASMFile nasmFile = (NASMFile) PsiManager.getInstance(project).findFile(virtualFile);
-        //    if (nasmFile != null) {
-        //        NASMIdentifier[] identifiers = PsiTreeUtil.getChildrenOfType(nasmFile, NASMIdentifier.class);
-        //        if (identifiers != null) {
-        //            for (NASMIdentifier identifier : identifiers) {
-        //                if (targetIdentifierId.equals(identifier.getId().getText())) {
-        //                    if (result == null) {
-        //                        result = new ArrayList<NASMIdentifier>();
-        //                    }
-        //                    result.add(identifier);
-        //                }
-        //            }
-        //        }
-        //    }
-        //}
-        //return result != null ? result : Collections.<NASMIdentifier>emptyList();
 
         return result != null ? result : Collections.emptyList();
     }

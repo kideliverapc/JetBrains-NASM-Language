@@ -27,12 +27,6 @@ public class NASMDataImpl extends ASTWrapperPsiElement implements NASMData {
   }
 
   @Override
-  @Nullable
-  public NASMIdentifier getIdentifier() {
-    return findChildByClass(NASMIdentifier.class);
-  }
-
-  @Override
   @NotNull
   public List<NASMLabelIdentifier> getLabelIdentifierList() {
     return PsiTreeUtil.getChildrenOfTypeAsList(this, NASMLabelIdentifier.class);
@@ -45,15 +39,15 @@ public class NASMDataImpl extends ASTWrapperPsiElement implements NASMData {
   }
 
   @Override
-  @Nullable
-  public PsiElement getComment() {
-    return findChildByType(COMMENT);
-  }
-
-  @Override
   @NotNull
   public PsiElement getDataOp() {
     return findNotNullChildByType(DATA_OP);
+  }
+
+  @Override
+  @Nullable
+  public PsiElement getId() {
+    return findChildByType(ID);
   }
 
 }

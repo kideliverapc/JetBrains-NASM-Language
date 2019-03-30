@@ -27,14 +27,14 @@ public class NASMMacroCallImpl extends NASMExprImpl implements NASMMacroCall {
 
   @Override
   @NotNull
-  public NASMIdentifier getIdentifier() {
-    return findNotNullChildByClass(NASMIdentifier.class);
+  public List<NASMExpr> getExprList() {
+    return PsiTreeUtil.getChildrenOfTypeAsList(this, NASMExpr.class);
   }
 
   @Override
-  @NotNull
-  public List<NASMNumericExpr> getNumericExprList() {
-    return PsiTreeUtil.getChildrenOfTypeAsList(this, NASMNumericExpr.class);
+  @Nullable
+  public NASMMacroParenthesis getMacroParenthesis() {
+    return findChildByClass(NASMMacroParenthesis.class);
   }
 
   @Override

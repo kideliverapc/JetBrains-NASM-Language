@@ -11,14 +11,14 @@ import static com.nasmlanguage.psi.NASMTypes.*;
 import com.intellij.extapi.psi.ASTWrapperPsiElement;
 import com.nasmlanguage.psi.*;
 
-public class NASMStrlenImpl extends ASTWrapperPsiElement implements NASMStrlen {
+public class NASMMacroParenthesisImpl extends ASTWrapperPsiElement implements NASMMacroParenthesis {
 
-  public NASMStrlenImpl(@NotNull ASTNode node) {
+  public NASMMacroParenthesisImpl(@NotNull ASTNode node) {
     super(node);
   }
 
   public void accept(@NotNull NASMVisitor visitor) {
-    visitor.visitStrlen(this);
+    visitor.visitMacroParenthesis(this);
   }
 
   public void accept(@NotNull PsiElementVisitor visitor) {
@@ -28,26 +28,8 @@ public class NASMStrlenImpl extends ASTWrapperPsiElement implements NASMStrlen {
 
   @Override
   @NotNull
-  public NASMIdentifier getIdentifier() {
-    return findNotNullChildByClass(NASMIdentifier.class);
-  }
-
-  @Override
-  @Nullable
-  public PsiElement getId() {
-    return findChildByType(ID);
-  }
-
-  @Override
-  @Nullable
-  public PsiElement getString() {
-    return findChildByType(STRING);
-  }
-
-  @Override
-  @NotNull
-  public PsiElement getStrlenTag() {
-    return findNotNullChildByType(STRLEN_TAG);
+  public List<NASMExpr> getExprList() {
+    return PsiTreeUtil.getChildrenOfTypeAsList(this, NASMExpr.class);
   }
 
 }

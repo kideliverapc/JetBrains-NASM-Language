@@ -34,6 +34,12 @@ public class NASMMacroImpl extends ASTWrapperPsiElement implements NASMMacro {
 
   @Override
   @NotNull
+  public List<NASMDirective> getDirectiveList() {
+    return PsiTreeUtil.getChildrenOfTypeAsList(this, NASMDirective.class);
+  }
+
+  @Override
+  @NotNull
   public List<NASMExpr> getExprList() {
     return PsiTreeUtil.getChildrenOfTypeAsList(this, NASMExpr.class);
   }
@@ -42,6 +48,12 @@ public class NASMMacroImpl extends ASTWrapperPsiElement implements NASMMacro {
   @NotNull
   public List<NASMInstruction> getInstructionList() {
     return PsiTreeUtil.getChildrenOfTypeAsList(this, NASMInstruction.class);
+  }
+
+  @Override
+  @NotNull
+  public List<NASMLabel> getLabelList() {
+    return PsiTreeUtil.getChildrenOfTypeAsList(this, NASMLabel.class);
   }
 
   @Override
@@ -80,8 +92,8 @@ public class NASMMacroImpl extends ASTWrapperPsiElement implements NASMMacro {
     return findChildByType(STRING);
   }
 
-  public String getMacroIdentifier() {
-    return NASMPsiImplUtil.getMacroIdentifier(this);
+  public String getMacroIdentifierString() {
+    return NASMPsiImplUtil.getMacroIdentifierString(this);
   }
 
 }
